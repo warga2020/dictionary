@@ -18,3 +18,17 @@ def cutoff_suffixes(tokens_list: list):
     for i, token in enumerate(tokens_list):
         tmp_str = token.encode('ascii', errors='replace')
         tokens_list[i] = token[:tmp_str.index('?')] if tmp_str.count('?') else token
+
+
+def delete_invalid_tokens(tokens_list: list) -> list:
+    """ delete token with non-alphabetic (or hyphen) symbol inside token """
+    def __detect_invalid_symb(s: str) -> bool:
+        has_invalid_symb = False
+        for i in s:
+            if not (i.isalpha() or i == '-'):
+                has_invalid_symb = True
+                break
+        return has_invalid_symb
+    for i, token in enumerate(tokens_list):
+        if __detect_invalid_symb(token):
+            tokens_list.pop(i)
