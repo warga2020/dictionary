@@ -17,7 +17,7 @@ def cutoff_suffixes(tokens_list: list):
     """ suffix - it may be just word's plural form or short form of construction of sentence. """
     for i, token in enumerate(tokens_list):
         tmp_str = token.encode('ascii', errors='replace')
-        tokens_list[i] = token[:tmp_str.index('?')] if tmp_str.count('?') else token
+        tokens_list[i] = token[:bytes.decode(tmp_str).index('?')] if str(tmp_str).count('?') else token
 
 
 def delete_invalid_tokens(tokens_list: list) -> list:
@@ -32,3 +32,7 @@ def delete_invalid_tokens(tokens_list: list) -> list:
     for i, token in enumerate(tokens_list):
         if __detect_invalid_symb(token):
             tokens_list.pop(i)
+
+
+def remove_duplicates(tokes_list: list) -> list:
+    return list(set(tokes_list))
