@@ -1,0 +1,4 @@
+Upload an ima_ge to customize your repository’s social media preview.
+
+Images 1should be at least 640×320px (1280×640px for best display).
+Download template
